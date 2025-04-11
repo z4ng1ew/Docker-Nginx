@@ -86,9 +86,22 @@ docker inspect [container_id|container_name]
 ![docker_inspect_output](img/docker_inspect_output.png)
 
 **Данные, полученные из команды `docker inspect`:**
+
+
+![docker_inspect_output](img/Размер_контейнера.png)
+
 - Размер контейнера: 200MB
+
+
+![docker_inspect_output](img/Замапленные_порты.png)
 - Замапленные порты: 80->80, 443->443
+
+
+![docker_inspect_output](img/IP_контейнера.png)
+
 - IP контейнера: 172.17.0.2
+
+
 
 ---
 
