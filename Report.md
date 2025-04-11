@@ -88,12 +88,16 @@ docker inspect [container_id|container_name]
 **Данные, полученные из команды `docker inspect`:**
 
 
-![docker_inspect_output](img/Размер_контейнера.png)
+- ![docker_inspect_output](img/Размер_контейнера.png)
+- ![docker_inspect_output](img/перевод_байты_в_мегабайты.png) 
 
-- Размер контейнера: 200MB
+- Размер контейнера: 183.16 MB
+
+- ![docker_inspect_output](img/Замапленные_порты.png)
 
 
-![docker_inspect_output](img/Замапленные_порты.png)
+
+
 - Замапленные порты: 80->80, 443->443
 
 
