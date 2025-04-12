@@ -282,25 +282,44 @@ docker ps
 ### Скриншоты
 
 1. **Вызов команды `docker exec` и просмотр файла конфигурации nginx**  
+
    ![Просмотр-конфигурации-nginx-в-контейнере](img/exec_view_nginx_conf.png)
 
-2. **Создание локального `nginx.conf` с добавленной директивой location для `/status`**  
+2. **Создание локального `nginx.conf` с добавленной директивой location для `/status`** 
+
    ![Локальный-файл-nginx-conf-с-директивой-status](img/local_nginx_conf_with_status.png)
 
    ![Локальный-файл-nginx-conf-с-директивой-status](img/touch_nginx_conf.png)
 
 
 3. **Копирование `nginx.conf` внутрь контейнера и перезапуск nginx через `docker exec`**  
+
    ![Копирование-файла-и-перезапуск-nginx](img/copy_and_restart_nginx.png)
 
+   ![alt text](img/docker_exec_reload.png)
+
+
 4. **Отображение страницы статуса NGINX на `localhost:80/status`**  
+
    ![Страница-статуса-NGINX-на-localhost](img/nginx_status_page.png)
 
+
+
+
 5. **Экспорт контейнера в `container.tar`, остановка и удаление контейнера и образа**  
+
    ![Экспорт-и-удаление-контейнера-и-образа](img/export_remove_container_image.png)
 
+
+
+
 6. **Импорт контейнера и его запуск**  
+
    ![Импорт-и-запуск-контейнера](img/import_and_run_container.png)
 
+
+
+
 7. **Повторная проверка доступности `/status` после импорта**  
+
    ![Статус-страница-после-импорта-контейнера](img/status_after_import.png)
