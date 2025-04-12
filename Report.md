@@ -287,9 +287,11 @@ docker ps
 
 2. **Создание локального `nginx.conf` с добавленной директивой location для `/status`** 
 
+   ![Локальный-файл-nginx-conf-с-директивой-status](img/touch_nginx_conf.png)
+
    ![Локальный-файл-nginx-conf-с-директивой-status](img/local_nginx_conf_with_status.png)
 
-   ![Локальный-файл-nginx-conf-с-директивой-status](img/touch_nginx_conf.png)
+
 
 
 3. **Копирование `nginx.conf` внутрь контейнера и перезапуск nginx через `docker exec`**  
