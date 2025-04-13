@@ -667,9 +667,22 @@ docker run -d -p 80:80 --name my-nginx-server my-fcgi-nginx:latest
 - Добавлено в `nginx.conf`:
 
 ```nginx
-location /status {
-    stub_status;
-}
+server {
+         listen 80;
+         server_name localhost;
+
+         location / {
+         include /etc/nginx/fastcgi_params;
+         fastcgi_pass 127.0.0.1:8080;
+         }
+
+         location /status {
+         stub_status on;
+         access_log off;
+         allow all;   # Разрешаем доступ со всех хостов
+         deny all;           # Отклоняем все остальные подключения
+         }
+    }
 ```
 
 - После перезапуска контейнера, по адресу `/status` доступна информация о работе nginx:
