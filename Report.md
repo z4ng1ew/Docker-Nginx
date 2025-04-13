@@ -547,12 +547,15 @@ sudo lsof -i :8080
 - Прописано проксирование запросов с порта 81 на порт 8080:
 
 ```nginx
-server {
-    listen 81;
-    location / {
-        proxy_pass http://127.0.0.1:8080;
+erver {
+        listen 81;
+        server_name localhost;
+
+        location / {
+            include /etc/nginx/fastcgi_params;
+            fastcgi_pass 127.0.0.1:8080;
+        }
     }
-}
 ```
 
 - Запуск nginx с использованием пользовательского `nginx.conf`:
@@ -638,7 +641,7 @@ CMD spawn-fcgi -p 8080 ./my_server && nginx -g 'daemon off;'
 - Сборка образа:
 
 ```bash
-docker build -t myfastcgi-server:latest .
+docker build -t my-fcgi-nginx:latest .
 ```
 
 - Проверка списка образов:
@@ -647,18 +650,21 @@ docker build -t myfastcgi-server:latest .
 docker images
 ```
 
-- ![Список собранных docker-образов](img/docker_images_list.png) 
-
-  *Показан собранный образ myfastcgi-server.*
+- ![Dockerfile сборка образа](img/docker_build_-t_my-fcgi-nginx_latest.png)
+  *Показан собранный образ my-fcgi-nginx.*
 
 - Запуск контейнера:
 
 ```bash
-docker run -d -p 80:81 -v $(pwd)/nginx:/etc/nginx myfastcgi-server:latest
+docker run -d -p 80:80 --name my-nginx-server my-fcgi-nginx:latest
 ```
 
 - ![Контейнер успешно запущен и доступен на localhost:80](img/docker_container_running.png)  
   *Скриншот с проверкой доступности сервера через браузер по адресу http://localhost:80.*
+
+- ![Контейнер успешно запущен и доступен на localhost:80](img/my_container_localhost_80.png) 
+
+ 
 
 ---
 
@@ -678,7 +684,7 @@ location /status {
 docker restart <container_id>
 ```
 
-- ![Информация о статусе nginx на странице /status](img/nginx_status_page.png)  
+- ![Информация о статусе nginx на странице /status](img/nginx_status_page_2.png)  
   *Скриншот страницы http://localhost:80/status, отображающей статус nginx.*
 
 ---
