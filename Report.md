@@ -1,5 +1,5 @@
 
-```markdown
+
 # Отчёт по выполнению задачи: Готовый докер
 
 ## Part 1. Выкачивание официального докер-образа с nginx
@@ -7,9 +7,8 @@
 Для начала был выкачан официальный докер-образ с nginx. Для этого использовалась команда:
 
 ```
-
 docker pull nginx
-
+```
 
 **Скриншот вывода команды `docker pull nginx`:**  
 ![docker_pull_output](img/docker_pull_output.png)
@@ -422,7 +421,8 @@ docker rmi -f nginx
 sudo apt install spawn-fcgi libfcgi-dev nginx
 gcc -Wall -o my_server my_server.c -lfcgi
 spawn-fcgi -p 8080 ./my_server
-sudo nginx -c $(pwd)/nginx/nginx.conf
+sudo nginx -c "$(pwd)/nginx.conf"
+
 ```
 
 ### Скриншоты:
@@ -440,7 +440,7 @@ sudo nginx -c $(pwd)/nginx/nginx.conf
 
 
 - ![Компиляция файла мини-сервера](img/compile_server.png)  
-
+  *spawn-fcgi -p 8080 ./my_server -команда запуска*
   *Скриншот демонстрирует компиляцию сервера с помощью `gcc`.*
 
 
@@ -472,8 +472,254 @@ sudo nginx -c $(pwd)/nginx/nginx.conf
 - ![Размещение nginx.conf](img/mv_nginx.png) 
 
   *Расположение файла `nginx.conf` по пути `./nginx/nginx.conf`.*
-
+  *sudo nginx -c "$(pwd)/nginx.conf"*
 
 
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Part 4. Свой Docker
+
+
+## Часть 1. Подготовка сервера
+
+- Установлены все необходимые пакеты для сборки и запуска мини-сервера.
+- Собран бинарный файл `my_server` из исходников.
+- Запущен сервер через `spawn-fcgi` на порту 8080:
+
+```bash
+spawn-fcgi -p 8080 ./my_server
+```
+
+- Убедились, что сервер запущен и слушает порт:
+
+```bash
+sudo lsof -i :8080
+```
+
+- ![Проверка, что сервер слушает порт 8080](img/server_listens_port_8080.png)  
+  *Скриншот показывает, что мини-сервер успешно запущен и слушает порт 8080.*
+
+---
+
+## Часть 2. Настройка nginx
+
+- Создан файл конфигурации `nginx.conf` по пути `./nginx/nginx.conf`.
+- Прописано проксирование запросов с порта 81 на порт 8080:
+
+```nginx
+server {
+    listen 81;
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+    }
+}
+```
+
+- Запуск nginx с использованием пользовательского `nginx.conf`:
+
+```bash
+sudo nginx -c $(pwd)/nginx/nginx.conf
+```
+
+- Проверка, что nginx слушает порт 81:
+
+```bash
+sudo lsof -i :81
+```
+
+- ![nginx слушает порт 81](img/nginx_listens_port_81.png)  
+  *На скриншоте показано, что nginx успешно запущен и слушает порт 81.*
+
+- Структура проекта с указанием расположения файла конфигурации:
+
+```bash
+tree
+```
+
+- ![Структура проекта и расположение nginx.conf](img/project_structure_nginx.png)  
+  *Дерево проекта, демонстрирующее расположение файла nginx.conf в каталоге ./nginx.*
+
+---
+
+## Часть 3. Исходные файлы сервера
+
+- Исходники мини-сервера и `Makefile` размещены в `src/server`.
+- Сервер собирается через:
+
+```bash
+make
+```
+
+- ![Сборка мини-сервера](img/build_my_server.png)  
+  *Показана команда make и успешная сборка исполняемого файла my_server.*
+
+---
+
+## Часть 4. Свой докер
+
+- Создан `Dockerfile`, который:
+  - копирует исходники;
+  - компилирует мини-сервер;
+  - копирует конфигурацию `nginx`;
+  - устанавливает nginx;
+  - запускает оба сервиса:
+
+```dockerfile
+FROM debian:stable
+
+RUN apt update && apt install -y \
+    spawn-fcgi \
+    gcc \
+    nginx \
+    libfcgi-dev \
+    make \
+ && rm -rf /var/lib/apt/lists/*
+
+COPY . /app
+WORKDIR /app/server
+
+RUN make
+
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+
+CMD spawn-fcgi -p 8080 ./my_server && nginx -g 'daemon off;'
+```
+
+
+- ![Dockerfile сборка образа](img/Dockerfile_photo_part_4.png)
+
+- Сборка образа:
+
+```bash
+docker build -t myfastcgi-server:latest .
+```
+
+- Проверка списка образов:
+
+```bash
+docker images
+```
+
+- ![Список собранных docker-образов](img/docker_images_list.png) 
+ 
+  *Показан собранный образ myfastcgi-server.*
+
+- Запуск контейнера:
+
+```bash
+docker run -d -p 80:81 -v $(pwd)/nginx:/etc/nginx myfastcgi-server:latest
+```
+
+- ![Контейнер успешно запущен и доступен на localhost:80](img/docker_container_running.png)  
+  *Скриншот с проверкой доступности сервера через браузер по адресу http://localhost:80.*
+
+---
+
+## Часть 5. Проксирование /status
+
+- Добавлено в `nginx.conf`:
+
+```nginx
+location /status {
+    stub_status;
+}
+```
+
+- После перезапуска контейнера, по адресу `/status` доступна информация о работе nginx:
+
+```bash
+docker restart <container_id>
+```
+
+- ![Информация о статусе nginx на странице /status](img/nginx_status_page.png)  
+  *Скриншот страницы http://localhost:80/status, отображающей статус nginx.*
+
+---
+
+## Часть 6. Docker Compose
+
+- Создан `docker-compose.yml`:
+
+```yaml
+version: '3'
+
+services:
+  myserver:
+    build: .
+    ports:
+      - "80:81"
+    volumes:
+      - ./nginx:/etc/nginx
+```
+
+- Запуск с помощью:
+
+```bash
+docker-compose up --build
+```
+
+- ![Запуск через docker-compose](img/docker_compose_up.png)  
+  *Показан вывод команды docker-compose up и запуск всех компонентов проекта.*
+
+---
+
+## ✅ Вывод
+
+- Все задания успешно выполнены;
+- Мини-сервер работает через spawn-fcgi и nginx;
+- Собран собственный docker-образ;
+- Реализована маршрутизация через nginx;
+- Добавлена страница статуса `/status`;
+- Подключен `docker-compose` для автоматизированного развёртывания.
+
+```
+
+---
+
+Если нужно — могу подготовить и `.dockerignore`, `Makefile`, `nginx.conf`, `server.c`, `Dockerfile`, и `docker-compose.yml` с реальным содержанием.
+
+
+
+
+
+
+
+
