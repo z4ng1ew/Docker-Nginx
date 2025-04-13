@@ -583,17 +583,8 @@ sudo lsof -i :81
 - Исходники мини-сервера и `Makefile` размещены в `src/server`.
 
 
-- ![makefile](img/makefile_part_4.png)  
-
-
-- Сервер собирается через:
-
-```bash
-make
-```
-
-- ![Сборка мини-сервера](img/build_my_server.png)  
-  *Показана команда make и успешная сборка исполняемого файла my_server.*
+- ![makefile](img/makefile_part_4.png)   
+  *Показано содержимое makefile.*
 
 ---
 
@@ -607,26 +598,38 @@ make
   - запускает оба сервиса:
 
 ```dockerfile
-FROM debian:stable
+# Используем базовый образ Ubuntu
+FROM ubuntu:20.04
 
+# Устанавливаем нужные пакеты
 RUN apt update && apt install -y \
+    g++ \
     spawn-fcgi \
-    gcc \
-    nginx \
     libfcgi-dev \
+    nginx \
     make \
- && rm -rf /var/lib/apt/lists/*
+    curl \
+ && apt clean
 
-COPY . /app
+# Копируем исходники мини-сервера внутрь контейнера
+COPY . /app/server
+
+# Переходим в папку с сервером и собираем бинарник
 WORKDIR /app/server
-
 RUN make
 
+# Копируем конфиг nginx внутрь контейнера
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
+# Открываем нужные порты
 EXPOSE 80
 
-CMD spawn-fcgi -p 8080 ./my_server && nginx -g 'daemon off;'
+# Используем скрипт запуска, чтобы корректно обрабатывать сигналы и запускать оба процесса
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Используем exec-форму (JSON-формат) для правильной обработки сигналов
+CMD ["/entrypoint.sh"]
 ```
 
 
