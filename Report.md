@@ -575,14 +575,8 @@ sudo lsof -i :81
 
 - Структура проекта с указанием расположения файла конфигурации:
 
-```bash
-tree
-```
 
-- ![Структура проекта и расположение nginx.conf](img/project_structure_nginx.png)  
-  *Дерево проекта, демонстрирующее расположение файла nginx.conf в каталоге ./nginx.*
 
----
 
 ## Часть 3. Исходные файлы сервера
 
@@ -727,14 +721,20 @@ docker-compose up --build
 
 ```
 
+
+
+
+
+
+
+
+
+```bash
+tree
+```
+
+- ![Структура проекта и расположение nginx.conf](img/project_structure_nginx.png)  
+  *Дерево проекта, демонстрирующее расположение файла nginx.conf в каталоге ./nginx.*
+
 ---
-
-Если нужно — могу подготовить и `.dockerignore`, `Makefile`, `nginx.conf`, `server.c`, `Dockerfile`, и `docker-compose.yml` с реальным содержанием.
-
-
-
-
-
-
-
 
