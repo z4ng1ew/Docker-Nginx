@@ -437,12 +437,12 @@ sudo nginx -c $(pwd)/nginx/nginx.conf
   *Содержимое файла мини-сервера на си - `my_server.c`.*
 
 
-- ![Компиляция и запуск мини-сервера](img/compile_server.png)  
+- ![Компиляция файла мини-сервера](img/compile_server.png)  
   *Скриншот демонстрирует компиляцию сервера с помощью `gcc`.*
 
 
 
-- ![Компиляция и запуск мини-сервера](img/run_server.png)  
+- ![Запуск мини-сервера](img/run_server.png)  
   *Скриншот демонстрирует  запуск сервера с помощью `spawn-fcgi`.*
 
 
@@ -467,70 +467,3 @@ sudo nginx -c $(pwd)/nginx/nginx.conf
   *Скриншот с выводом команды `spawn-fcgi`, подтверждающий успешный запуск FastCGI-приложения.*
 
 ---
-
-## Задание 4. Dockerfile для сервера
-
-- Загружен итоговый `Dockerfile` для сборки образа с мини-сервером.
-- Файл размещён в `src/`.
-
-### Скриншоты:
-
-- ![Содержимое Dockerfile для мини-сервера](img/dockerfile_server_content.png)  
-  *Содержимое `Dockerfile`, используемого для сборки образа с сервером.*
-
----
-
-## Задание 5. Dockerfile для nginx
-
-- Загружен `Dockerfile` для создания контейнера с `nginx`, использующего собственный `nginx.conf`.
-- Файл размещён в `src/`.
-
-### Скриншоты:
-
-- ![Содержимое Dockerfile для nginx](img/dockerfile_nginx_content.png)  
-  *Содержимое `Dockerfile`, используемого для сборки образа nginx с пользовательским конфигом.*
-
----
-
-## Задание 6. Docker Compose
-
-- Создан `docker-compose.yml` для запуска серверной части и nginx-прокси.
-- Указаны пути к Dockerfile'ам.
-- Файл размещён в `src/`.
-
-### Скриншоты:
-
-- ![Содержимое docker-compose.yml](img/docker_compose_file.png)  
-  *Полный файл `docker-compose.yml`, в котором описаны два сервиса: сервер и nginx.*
-
-- ![Запуск docker-compose up](img/docker_compose_up.png)  
-  *Скриншот демонстрирует успешный запуск контейнеров через `docker-compose up`.*
-
-- ![Работающий сервис через браузер](img/hello_world_docker_browser.png)  
-  *Сервис успешно запущен в docker-среде и страница "Hello, World!" отображается по адресу `localhost:81`.*
-
----
-
-## Структура проекта
-
-```bash
-src/
-├── Report.md
-├── docker-compose.yml
-├── Dockerfile       # для мини-сервера
-├── Dockerfile.nginx # для nginx
-├── nginx/
-│   └── nginx.conf
-└── server/
-    ├── my_server.c
-    └── другие_необходимые_файлы
-```
-
----
-
-## Заключение
-
-Все задания выполнены в полном соответствии с условиями. При необходимости готов продемонстрировать работу проекта вживую.
-```
-
-Если хочешь, могу ещё добавить шаблоны для самих `.c`, `Dockerfile`, `nginx.conf` и `docker-compose.yml`, чтобы было вообще под ключ.
