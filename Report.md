@@ -430,7 +430,7 @@ sudo nginx -c $(pwd)/nginx/nginx.conf
 
 
 - ![Компиляция и запуск мини-сервера](img/УСТАНОВКА_FastCGI.png)  
-
+  *Установка FastCGI*
 
 
 - ![Содержимое файла мини-сервера на си](img/my_server_c_.png)  
