@@ -1,0 +1,14 @@
+# Временные swap-файлы Vim
+*.swp
+
+# Архив с dockle
+dockle_0.4.15_Linux-64bit.tar.gz
+
+# Лицензия и документация
+LICENSE
+README.md
+
+# Dockerfile, если он копируется отдельно ockerfile
+
+# Локальные конфиги, если они не используются
+nginx.conf
