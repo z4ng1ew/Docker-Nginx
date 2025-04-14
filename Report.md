@@ -912,17 +912,22 @@ RUN rm app/server/Dockerfile
 
 
 ![new_doker_file](img/new_doker_file.png)
+*new_doker_file*
+
+
+
+![new_file](img/new_entrypoint_sh.png)
+
+*new_entrypoint.sh*
 
 
 
 
-![new_doker_file](img/new_entrypoint_sh.png)
 
+![new_file](img/dockerignore.png)
 
+*dockerignore*
 
+![new_file](img/Пересобрать_образ_с_новым_именем_v1.png)
 
-
-
-
-![new_doker_file](img/dockerignore.png)
-
+*Пересобрать_образ_с_новым_именем_v1*
