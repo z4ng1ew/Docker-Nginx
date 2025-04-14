@@ -911,7 +911,7 @@ RUN rm app/server/Dockerfile
 
 
 
-![new_doker_file](img/new_doker_file.png)
+![new_doker_file](img/new_doker_file_2.png)
 *new_doker_file*
 
 
@@ -934,5 +934,13 @@ RUN rm app/server/Dockerfile
 
 
 
-![new_file](img/new_makefile.png)
+
+
+![new_file](img/new_makefil_1.png)
 *new_makefile*
+
+
+![new_file](img/new_makefil_2.png)
+*new_makefile*
+
+
