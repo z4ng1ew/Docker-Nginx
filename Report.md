@@ -962,6 +962,11 @@ RUN rm app/server/Dockerfile
 
 ![alt text](img/Docker_Compose.png)
 
-*Скачал последнюю версию напрямую*
+*Скачал последнюю версию напрямую вручную*
+
+
+
+![alt text](img/компоуз_исполняемый.png)
+*Делаю последнюю версию Docker Compose исполдняемой*
 
 
