@@ -945,3 +945,23 @@ RUN rm app/server/Dockerfile
 ![new_file](img/Пересобрать_образ_с_новым_именем_v1.png)
 
 *Пересобрал образ с новым именем v3 и проверить на dockle*
+
+
+
+
+
+
+
+
+
+
+
+
+## Part 6. Базовый Docker Compose
+
+
+![alt text](img/Docker_Compose.png)
+
+*Скачал последнюю версию напрямую*
+
+
