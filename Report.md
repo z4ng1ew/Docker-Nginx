@@ -928,9 +928,7 @@ RUN rm app/server/Dockerfile
 
 *dockerignore*
 
-![new_file](img/Пересобрать_образ_с_новым_именем_v1.png)
 
-*Пересобрать_образ_с_новым_именем_v1 и проверить на dockle*
 
 
 
@@ -944,3 +942,6 @@ RUN rm app/server/Dockerfile
 *new_makefile*
 
 
+![new_file](img/Пересобрать_образ_с_новым_именем_v1.png)
+
+*Пересобрал образ с новым именем v3 и проверить на dockle*
