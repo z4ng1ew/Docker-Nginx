@@ -781,7 +781,8 @@ dockle version 0.4.15
 ```
 
 *Скриншот результата будет вставлен сюда:*
-![Проверка версии](img/check_version.png)
+
+- ![Проверка версии](img/check_version.png)
 
 
 
