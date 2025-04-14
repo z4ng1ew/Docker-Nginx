@@ -931,3 +931,8 @@ RUN rm app/server/Dockerfile
 ![new_file](img/Пересобрать_образ_с_новым_именем_v1.png)
 
 *Пересобрать_образ_с_новым_именем_v1*
+
+
+
+![new_file](img/new_makefile.png)
+*new_makefile*
