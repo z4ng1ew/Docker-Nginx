@@ -740,21 +740,31 @@ docker restart <container_id>
 
 
 
-```markdown
-# Отчёт о проверке Docker-образа с помощью Dockle
 
-В этом отчете приведены результаты проверки Docker-образа с помощью инструмента **Dockle**. Включены все примененные команды и соответствующие скриншоты.
+## Part 5. Dockle
+
 
 ## 1. Установка Dockle
 
 Для начала нужно установить Dockle. Для этого выполняем следующую команду в терминале:
 
 ```bash
-sudo apt-get install dockle
+wget https://github.com/goodwithtech/dockle/releases/download/v0.4.15/dockle_0.4.15_Linux-64bit.tar.gz
+
+tar -xvzf dockle_0.4.15_Linux-64bit.tar.gz
+
+sudo mv dockle /usr/local/bin/
+
+dockle --version
+
 ```
 
-*Скриншот установки будет вставлен сюда:*
+
+
+*Скриншот установки:*
 ![Установка Dockle](img/install_dockle.png)
+
+
 
 ## 2. Проверка версии Dockle
 
@@ -772,6 +782,8 @@ dockle version 0.4.15
 
 *Скриншот результата будет вставлен сюда:*
 ![Проверка версии](img/check_version.png)
+
+
 
 ## 3. Проверка Docker-образа
 
@@ -811,7 +823,7 @@ INFO - DKL-LI-0003: Only put necessary files
     * unnecessary file : app/server/Dockerfile
 ```
 
-*Скриншот выполнения команды будет вставлен сюда:*
+*Скриншот выполнения команды:*
 ![Результат проверки](img/dockle_check_result.png)
 
 ## 4. Исправления и рекомендации
