@@ -635,11 +635,24 @@ CMD ["/entrypoint.sh"]
 
 - ![Dockerfile сборка образа](img/Dockerfile_photo_part_4.png)
 
+
+- ![Dockerfile сборка образа](img/entrypoint_sh.png)
+
+
+``` 
+✅ Обоснование:
+Мы используем файл entrypoint.sh в качестве точки входа контейнера для предварительной настройки окружения перед запуском основного процесса. Это обеспечивает модульность и гибкость при использовании Docker-образа.
+
+Файл передаётся в Docker через директиву CMD в JSON-формате (["/entrypoint.sh"]), что позволяет избежать проблем с неправильной обработкой сигналов (например, SIGTERM). Такой подход обеспечивает корректное завершение работы контейнера, особенно в оркестрационных системах (Kubernetes, Docker Compose), и повышает надёжность и предсказуемость поведения в продакшене.
+```
 - Сборка образа:
 
 ```bash
 docker build -t my-fcgi-nginx:latest .
 ```
+- ![Dockerfile сборка образа](img/docker_build_-t_my-fcgi-nginx_latest.png)
+  
+  *Показан собранный образ my-fcgi-nginx.*
 
 - Проверка списка образов:
 
@@ -647,7 +660,7 @@ docker build -t my-fcgi-nginx:latest .
 docker images
 ```
 
-- ![Dockerfile сборка образа](img/docker_build_-t_my-fcgi-nginx_latest.png)
+- ![Dockerfile сборка образа](img/docker_images_my_fastcgi-nginx.png)
   *Показан собранный образ my-fcgi-nginx.*
 
 - Запуск контейнера:
