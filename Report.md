@@ -721,7 +721,7 @@ docker restart <container_id>
 
 - ![Настройка зеркал](img/registry-mirrors.png) 
 
-
+```bash
 {
   "registry-mirrors": [
     "https://mirror.gcr.io",
@@ -730,11 +730,11 @@ docker restart <container_id>
   ],
   "dns": ["8.8.8.8", "8.8.4.4"]
 }
-
+```
 
 - 🌐 Ограничение/блокировка доступа (например, в России к DockerHub часто ограничен доступ);
 
-- Примечание: Yandex Cloud Mirror - неработает (( (https://mirror.gcr.yandex.net)
+- Примечание: Yandex Cloud Mirror - у меня не работает (( (https://mirror.gcr.yandex.net)
 
 
 
