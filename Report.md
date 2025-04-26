@@ -718,7 +718,7 @@ docker restart <container_id>
 
 ## 1. Установка Dockle
 
-Для начала нужно установить Dockle. Для этого выполняем следующую команду в терминале:
+Для начала нужно установить Dockle. Для этого выполняем следующие команду в терминале:
 
 ```bash
 wget https://github.com/goodwithtech/dockle/releases/download/v0.4.15/dockle_0.4.15_Linux-64bit.tar.gz
