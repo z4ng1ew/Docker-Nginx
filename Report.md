@@ -916,8 +916,8 @@ RUN rm app/server/Dockerfile
 
 ---
 
-# 📚 Отчёт по заданию "Part 6. Базовый Docker Compose"
-
+## 📚 "Part 6. Базовый Docker Compose"
+---
 
 
 ## 1. 📥 Установка последней версии Docker Compose
