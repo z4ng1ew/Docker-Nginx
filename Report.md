@@ -680,9 +680,6 @@ docker restart <container_id>
 - ![Информация о статусе nginx на странице /status](img/nginx_status_page_2.png)  
   *Скриншот страницы http://localhost:80/status, отображающей статус nginx.*
 
----
-
-
 
 
 
