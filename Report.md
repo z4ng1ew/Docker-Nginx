@@ -969,6 +969,7 @@ RUN rm app/server/Dockerfile
 Это было необходимо, чтобы использовать актуальные функции и исправления в работе с docker-compose-файлами.
 
 **Скриншот:**
+
 ![alt text](img/Docker_Compose.png)
 
 ---
@@ -980,6 +981,7 @@ RUN rm app/server/Dockerfile
 Это обязательный шаг, чтобы Docker Compose можно было запускать как обычную программу в Linux.
 
 **Скриншот:**
+
 ![alt text](img/компоуз_исполняемый.png)
 
 ---
